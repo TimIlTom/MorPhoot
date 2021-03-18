@@ -9,6 +9,7 @@ TagManager:
   - player
   - bullet
   - enemy
+  - triggerArea
   layers:
   - Default
   - TransparentFX

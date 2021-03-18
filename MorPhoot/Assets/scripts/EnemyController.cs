@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
     public int healtAmount;
     public int damage;
     public GameObject enemyTriggerArea;
+    public Transform firePoint;
+    public GameObject bullet;
 
     public void takeDamage(int damage){
 
@@ -40,15 +42,22 @@ public class EnemyController : MonoBehaviour
             Debug.Log("ao");
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
 
-            attack(player.transform.position);
+            // attack(player.transform.position);
         }
     }
 
-    private void attack(Vector3 playerPos){
+    // private void attack(Vector3 playerPos){
+        
+    //     Vector3 lookDirection = playerPos - transform.position ;
 
-        if(transform.position.x != playerPos.x){
+    //     float rotatio = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            transform.position += new Vector3(-0.1f, 0, 0);
-        }
-    }
+    //     firePoint.rotation = Quaternion.Euler(0f, 0f, rotatio);
+    //     Instantiate(this.bullet, firePoint.position, firePoint.rotation);
+
+    //     GameObject bullet = Instantiate(this.bullet, firePoint.position, firePoint.rotation);
+    //     Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+
+    //     bulletRb.AddForce(firePoint.right * 5, ForceMode2D.Impulse);
+    // }
 }

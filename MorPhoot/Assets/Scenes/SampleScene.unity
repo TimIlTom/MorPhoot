@@ -418,6 +418,7 @@ Transform:
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 1691193406}
+  - {fileID: 1289669147}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -435,7 +436,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healtAmount: 100
   damage: 10
-  enemyTriggerArea: {fileID: 0}
+  enemyTriggerArea: {fileID: 1691193405}
+  firePoint: {fileID: 1289669147}
+  bullet: {fileID: 1211964894886953880, guid: 43e0fccfdae16c84db0b3c44e4e384a5, type: 3}
 --- !u!1001 &548254397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -665,11 +668,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1960178621}
   bulletPre: {fileID: 1211964894886953880, guid: 43e0fccfdae16c84db0b3c44e4e384a5, type: 3}
-  bulletSpeed: 15
   animator: {fileID: 624776484}
   startShotTime: 0.06
   magazineSize: 30
   reloadTime: 1.5
+  bulletSpeed: 15
 --- !u!95 &624776484
 Animator:
   serializedVersion: 3
@@ -700,6 +703,7 @@ GameObject:
   - component: {fileID: 787392917}
   - component: {fileID: 787392919}
   - component: {fileID: 787392918}
+  - component: {fileID: 787392920}
   m_Layer: 0
   m_Name: pointer
   m_TagString: Untagged
@@ -733,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c230bfbe907814293d0f9f4fb2aa4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 519420031}
 --- !u!212 &787392919
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -785,6 +790,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &787392920
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787392916}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &887864909
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +894,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1289669146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289669147}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1289669147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289669146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.028, y: 0.422, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 541796352}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1317249269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1006,7 +1062,7 @@ GameObject:
   - component: {fileID: 1691193407}
   m_Layer: 0
   m_Name: enemyTrigger
-  m_TagString: Untagged
+  m_TagString: triggerArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

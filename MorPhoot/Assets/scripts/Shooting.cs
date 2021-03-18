@@ -6,14 +6,19 @@ public class Shooting : MonoBehaviour{
 
     public Transform firePoint;
     public GameObject bulletPre;
-    public float bulletSpeed = 5;
+    // public float bulletSpeed = 5;
     bool grabbed = false;
     public Animator animator;
+    
     public float startShotTime;
     private float timeBtwShots = 0;
+
     public int magazineSize;
     public float reloadTime;
     private int bulletInMagazine;
+
+    public int bulletSpeed;
+    
     void Start(){
         
         bulletInMagazine = magazineSize;
@@ -25,18 +30,7 @@ public class Shooting : MonoBehaviour{
 
         if(Input.GetButton("Fire1")){
 
-            if(grabbed){
-                
-                if(bulletInMagazine > 0){
-
-                    shoot();
-                }else{
-
-                    Invoke("reload", reloadTime);
-                }
-                
-                //StartCoroutine(shoot1());
-            }
+            shoot();
         }
 
         if(Input.GetKeyDown("r")){
@@ -55,22 +49,20 @@ public class Shooting : MonoBehaviour{
 
         animator.SetBool("isShooting", true);
         
-        if(timeBtwShots <= 0){
+        if(grabbed){
+            if(timeBtwShots <= 0){
+                if(bulletInMagazine > 0){
 
-            GameObject bullet = Instantiate(bulletPre, firePoint.position, firePoint.rotation);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                    Instantiate(bulletPre, firePoint.position, firePoint.rotation);
+                    bulletInMagazine--;
 
-            bulletRb.AddForce(firePoint.right * bulletSpeed, ForceMode2D.Impulse);
+                    timeBtwShots = startShotTime;
+                }
+            }else{
 
-            bulletInMagazine--;
-
-            timeBtwShots = startShotTime;
-        }else{
-
-            timeBtwShots -= Time.deltaTime;
+                timeBtwShots -= Time.deltaTime;
+            }
         }
-        
-        //bulletRb.velocity = firePoint.right * bulletSpeed;
     }
 
     void reload(){
