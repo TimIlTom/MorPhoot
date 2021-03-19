@@ -41,7 +41,7 @@ public class WeaponController : MonoBehaviour
 
                 transform.rotation = Quaternion.Euler(0f, yRotation, lastRotation);
 
-                if(angle <= 70 && angle >= -70){
+                if(angle <= 90 && angle >= -90){
 
                     transform.rotation = Quaternion.Euler(0f, yRotation, angle);
                     lastRotation = angle;
@@ -50,7 +50,7 @@ public class WeaponController : MonoBehaviour
 
                 transform.rotation = Quaternion.Euler(0f, yRotation, lastRotation);
 
-                if(angle >= 110 && angle <= 180 || angle <= -110 && angle >= -180){
+                if(angle >= 90 && angle <= 180 || angle <= -90 && angle >= -180){
 
                     transform.rotation = Quaternion.Euler(0f, yRotation, 180 - angle);
                     lastRotation = 180 - angle;

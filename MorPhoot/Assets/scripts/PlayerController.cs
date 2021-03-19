@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D playerRb;
     public SpriteRenderer spriteRenderer;
     public Transform hand;
+     private Vector2 mousePos;
+     public Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - playerRb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+
+        Debug.Log(angle);
 
         if(Input.GetButtonDown ("Jump") && isJumped == false){
 
@@ -33,13 +40,13 @@ public class PlayerController : MonoBehaviour
 
         float horozonatalMove = Input.GetAxis("Horizontal");
 
-        if(horozonatalMove < 0){
+        if(/*horozonatalMove < 0 ||*/ angle >= 90 && angle >= -90){
 
             transform.rotation =  Quaternion.Euler(0f, 180f, 0f);
 
             /*spriteRenderer.flipX = true;
             hand.transform.rotation = Quaternion.Euler(0f, 180f, 0f);*/
-        }else if(horozonatalMove > 0){
+        }else if(/*horozonatalMove > 0 ||*/ angle <= 90 && angle >= -90){
             
             transform.rotation =  Quaternion.Euler(0f, 0, 0f);
             /*hand.transform.rotation = Quaternion.Euler(0f, 0, 0f);

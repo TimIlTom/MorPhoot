@@ -1253,6 +1253,7 @@ MonoBehaviour:
   animator: {fileID: 1982789225}
   spriteRenderer: {fileID: 1982789226}
   hand: {fileID: 0}
+  camera: {fileID: 519420031}
 --- !u!61 &1982789229
 BoxCollider2D:
   m_ObjectHideFlags: 0

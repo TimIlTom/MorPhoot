@@ -13,16 +13,12 @@ public class BulletController : MonoBehaviour
         
         bulletRb = GetComponent<Rigidbody2D>();
         bulletTr = GetComponent<Transform>();
-    }
-
-    private void FixedUpdate() {
-
-        bulletRb.AddForce((bulletTr.right * 10), ForceMode2D.Impulse);
+        bulletRb.AddForce(bulletTr.right * 15, ForceMode2D.Impulse);
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
         
-        if(other.gameObject.tag != "weapon001" && other.gameObject.tag != "bullet" && other.gameObject.tag != "triggerArea"){
+        if(other.gameObject.tag != "weapon001" && other.gameObject.tag != "bullet" && other.gameObject.tag != "triggerArea" && other.gameObject.tag != "Player"){
 
             GameObject.Destroy(this.gameObject);
         }
