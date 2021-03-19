@@ -12,6 +12,8 @@ public class WeaponController : MonoBehaviour
     private Vector2 mousePos;
     Rigidbody2D weaponRb;
 
+    PlayerController player;
+
     float lastRotation = 0;
 
     private void Start() {
@@ -27,33 +29,34 @@ public class WeaponController : MonoBehaviour
         if(grabbed == true){
 
             transform.position = owner.transform.position;
-            transform.rotation = owner.transform.rotation;
+            //transform.rotation = owner.transform.rotation;
 
-            Vector2 lookDir = mousePos - weaponRb.position;
-            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+            // Vector2 lookDir = mousePos - weaponRb.position;
+            // float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
             float yRotation = owner.transform.rotation.y * 180f;
             
-        
-            transform.SetParent(owner);
+            player = GetComponentInParent<PlayerController>();
+            transform.rotation = Quaternion.Euler(0f, yRotation, player.angle); 
 
-            //code that manage the rotatio of the weapon
+            //code that manage the rotation of the weapon
+
             if(yRotation == 0){
 
                 transform.rotation = Quaternion.Euler(0f, yRotation, lastRotation);
 
-                if(angle <= 90 && angle >= -90){
+                if(player.angle <= 90 && player.angle >= -90){
 
-                    transform.rotation = Quaternion.Euler(0f, yRotation, angle);
-                    lastRotation = angle;
+                    transform.rotation = Quaternion.Euler(0f, yRotation, player.angle);
+                    lastRotation = player.angle;
                 }
             }else{
 
                 transform.rotation = Quaternion.Euler(0f, yRotation, lastRotation);
 
-                if(angle >= 90 && angle <= 180 || angle <= -90 && angle >= -180){
+                if(player.angle >= 90 || player.angle <= -90){
 
-                    transform.rotation = Quaternion.Euler(0f, yRotation, 180 - angle);
-                    lastRotation = 180 - angle;
+                    transform.rotation = Quaternion.Euler(0f, yRotation, 180 - player.angle);
+                    lastRotation = 180 - player.angle;
                 }
             }
         }
@@ -62,5 +65,6 @@ public class WeaponController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         
         grabbed = true;
+        transform.SetParent(owner);
     }
 }

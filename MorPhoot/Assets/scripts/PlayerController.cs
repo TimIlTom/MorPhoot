@@ -13,52 +13,49 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D playerRb;
     public SpriteRenderer spriteRenderer;
     public Transform hand;
-     private Vector2 mousePos;
-     public Camera camera;
-    // Start is called before the first frame update
+    private Vector2 mousePos;
+    public new Camera camera;
+    public float angle;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lookDir = mousePos - playerRb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
 
         Debug.Log(angle);
+
+        float horozonatalMove = Input.GetAxis("Horizontal");
+
+        //palyer rotation
+        if(angle >= 90 || angle <= -90){
+
+            transform.rotation =  Quaternion.Euler(0f, 180f, 0f);
+        }else if(angle <= 90 && angle >= -90){
+            
+            transform.rotation =  Quaternion.Euler(0f, 0, 0f);
+        }
+
+        animator.SetFloat("speed", Mathf.Abs(horozonatalMove));
+
+        //player movement
+        Vector2 movement = new Vector2(horozonatalMove * speed, playerRb.velocity.y);
+
+        playerRb.velocity = movement;
 
         if(Input.GetButtonDown ("Jump") && isJumped == false){
 
             isJumped = true;
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpHeight);
             animator.SetBool("isJumping", true);
-            //playerRb.velocity = new Vector2
         }
 
-        float horozonatalMove = Input.GetAxis("Horizontal");
-
-        if(/*horozonatalMove < 0 ||*/ angle >= 90 && angle >= -90){
-
-            transform.rotation =  Quaternion.Euler(0f, 180f, 0f);
-
-            /*spriteRenderer.flipX = true;
-            hand.transform.rotation = Quaternion.Euler(0f, 180f, 0f);*/
-        }else if(/*horozonatalMove > 0 ||*/ angle <= 90 && angle >= -90){
-            
-            transform.rotation =  Quaternion.Euler(0f, 0, 0f);
-            /*hand.transform.rotation = Quaternion.Euler(0f, 0, 0f);
-            spriteRenderer.flipX = false;*/
-        }
-
-        animator.SetFloat("speed", Mathf.Abs(horozonatalMove));
-
-        Vector2 movement = new Vector2(horozonatalMove * speed, playerRb.velocity.y);
-
-        playerRb.velocity = movement;
-
+        //player life
         if(healt <= 0){
 
             die();
