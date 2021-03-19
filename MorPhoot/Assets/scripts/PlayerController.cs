@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     private bool isJumped = false;
     public Animator animator;
     Rigidbody2D playerRb;
-    public SpriteRenderer spriteRenderer;
-    public Transform hand;
     private Vector2 mousePos;
     public new Camera camera;
     public float angle;
@@ -27,8 +25,6 @@ public class PlayerController : MonoBehaviour
         mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lookDir = mousePos - playerRb.position;
         angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-
-        Debug.Log(angle);
 
         float horozonatalMove = Input.GetAxis("Horizontal");
 

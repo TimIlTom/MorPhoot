@@ -247,11 +247,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.03
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.7216284
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -695,7 +695,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624776477}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 367bf425132811c4ab9be1a9e5384f94, type: 2}
   m_CullingMode: 0
@@ -1174,7 +1174,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d333c69646b160a4c9ea36a5956cb28a, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1264,9 +1264,8 @@ MonoBehaviour:
   jumpHeight: 6
   healt: 100
   animator: {fileID: 1982789225}
-  spriteRenderer: {fileID: 1982789226}
-  hand: {fileID: 0}
   camera: {fileID: 519420031}
+  angle: 0
 --- !u!61 &1982789229
 BoxCollider2D:
   m_ObjectHideFlags: 0
