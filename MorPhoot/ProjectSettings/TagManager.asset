@@ -47,3 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: weapon
+    uniqueID: 2909618547
+    locked: 0
+  - name: pointer
+    uniqueID: 1393666527
+    locked: 0

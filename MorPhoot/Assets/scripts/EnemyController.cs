@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
         
         if(other.gameObject.tag == "Player"){
 
-            PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            PlayerHealtController player = other.gameObject.GetComponent<PlayerHealtController>();
 
             player.takeDamage(damage);
         }

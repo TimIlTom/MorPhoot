@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float jumpHeight;
-    public int healt;
+
     private bool isJumped = false;
     public Animator animator;
     Rigidbody2D playerRb;
@@ -50,12 +50,6 @@ public class PlayerController : MonoBehaviour
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpHeight);
             animator.SetBool("isJumping", true);
         }
-
-        //player life
-        if(healt <= 0){
-
-            die();
-        }
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
@@ -65,16 +59,5 @@ public class PlayerController : MonoBehaviour
             isJumped = false;
             animator.SetBool("isJumping", false);
         }
-    }
-
-    public void takeDamage(int damage){
-
-        this.healt -= damage;
-    }
-
-    public void die(){
-
-        transform.position = new Vector3(-10, 0, 0);
-        healt = 100;
     }
 }
