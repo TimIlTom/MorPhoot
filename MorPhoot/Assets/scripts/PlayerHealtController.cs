@@ -23,6 +23,6 @@ public class PlayerHealtController : MonoBehaviour
     public void die(){
 
         transform.position = new Vector3(-10, 0, 0);
-        healt = 100;
+        healt = 10;
     }
 }

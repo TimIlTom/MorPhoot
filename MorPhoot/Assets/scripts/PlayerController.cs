@@ -44,12 +44,7 @@ public class PlayerController : MonoBehaviour
 
         playerRb.velocity = movement;
 
-        if(Input.GetButtonDown ("Jump") && isJumped == false){
-
-            isJumped = true;
-            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpHeight);
-            animator.SetBool("isJumping", true);
-        }
+        jump();
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
@@ -58,6 +53,21 @@ public class PlayerController : MonoBehaviour
 
             isJumped = false;
             animator.SetBool("isJumping", false);
+        }
+    }
+
+    private void jump(){
+
+        if(Input.GetButtonDown ("Jump") && isJumped == false){
+
+            isJumped = true;
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpHeight);
+            animator.SetBool("isJumping", true);
+        }
+
+        if(playerRb.velocity.y < 0){
+
+            playerRb.velocity += Vector2.up * Physics2D.gravity.y * (2.5f) * Time.deltaTime;
         }
     }
 }
