@@ -1418,10 +1418,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpHeight: 6
+  jumpHeight: 10
   animator: {fileID: 1982789225}
   camera: {fileID: 519420031}
   angle: 0
+  jumpTime1: 0.35
 --- !u!61 &1982789229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1460,10 +1461,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 0bc95f23d04bf1f448fd40aab2a06a00, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1

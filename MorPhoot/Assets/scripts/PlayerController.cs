@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePos;
     public new Camera camera;
     public float angle;
+    private float jumpTime;
+    public float jumpTime1;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        jumpTime = jumpTime1;
     }
 
     void Update()
@@ -47,27 +50,33 @@ public class PlayerController : MonoBehaviour
         jump();
     }
     
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionStay2D(Collision2D other) {
         
+        Debug.Log("Ground");
+
         if(other.gameObject.tag == "ground"){
 
             isJumped = false;
+            jumpTime = jumpTime1;
             animator.SetBool("isJumping", false);
         }
     }
 
     private void jump(){
 
-        if(Input.GetButtonDown ("Jump") && isJumped == false){
+        if(Input.GetButton("Jump") && !isJumped){
 
-            isJumped = true;
-            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpHeight);
-            animator.SetBool("isJumping", true);
+            if(jumpTime > 0){
+
+                jumpTime -= Time.deltaTime;
+                playerRb.velocity = new Vector2(playerRb.velocity.x, jumpHeight);
+                animator.SetBool("isJumping", true);
+            }  
         }
 
-        if(playerRb.velocity.y < 0){
-
-            playerRb.velocity += Vector2.up * Physics2D.gravity.y * (2.5f) * Time.deltaTime;
+        if(Input.GetButtonUp("Jump")){
+            
+            isJumped = true;
         }
     }
 }
