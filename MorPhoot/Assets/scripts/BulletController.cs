@@ -7,13 +7,11 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody2D bulletRb;
     public int damage = 10;
-    Transform bulletTr;
 
     private void Start() {
         
         bulletRb = GetComponent<Rigidbody2D>();
-        bulletTr = GetComponent<Transform>();
-        bulletRb.AddForce(bulletTr.right * 15, ForceMode2D.Impulse);
+        bulletRb.AddForce(transform.right * 15, ForceMode2D.Impulse);
     }
     
     private void OnTriggerEnter2D(Collider2D other) {

@@ -17,10 +17,15 @@ public class PlayerController : MonoBehaviour
     private float jumpTime;
     public float jumpTime1;
 
+    private float dashTime;
+    public float dashDuration;
+    private bool dashed = false;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         jumpTime = jumpTime1;
+        dashDuration = dashTime;
     }
 
     void Update()
@@ -44,8 +49,25 @@ public class PlayerController : MonoBehaviour
 
         //player movement
         Vector2 movement = new Vector2(horozonatalMove * speed, playerRb.velocity.y);
-
         playerRb.velocity = movement;
+
+        if(Input.GetButtonDown("Fire2")){
+
+            dashed = true;
+        }
+        if(dashed){
+
+            if(dashTime > 0){
+
+                Debug.Log("hello");
+                playerRb.velocity = new Vector2(horozonatalMove * 50, playerRb.velocity.y) ;
+                dashTime -= Time.deltaTime;
+            }else{
+
+                dashTime = dashDuration;
+                dashed = false;
+            }
+        }
 
         jump();
     }
@@ -79,4 +101,16 @@ public class PlayerController : MonoBehaviour
             isJumped = true;
         }
     }
+
+    // private void dash(float playerDirection){
+
+    //     if(dashDuration > 0){
+
+    //         playerRb.velocity = new Vector2(playerDirection * 50, playerRb.velocity.y);
+    //         dashDuration -= Time.deltaTime;
+    //     }else{
+
+    //         dashDuration = dashTime;
+    //     }
+    // }
 }
