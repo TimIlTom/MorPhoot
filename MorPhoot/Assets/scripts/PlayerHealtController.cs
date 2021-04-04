@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerHealtController : MonoBehaviour
 {
     public int healt;
+    private PlayerController player;
+
+    private void Start() {
+        
+        player = GetComponent<PlayerController>();
+    }
     
     void Update(){
         
@@ -17,7 +23,10 @@ public class PlayerHealtController : MonoBehaviour
 
     public void takeDamage(int damage){
 
-        this.healt -= damage;
+        if(!player.dashed){
+            
+            this.healt -= damage;
+        }  
     }
 
     public void die(){

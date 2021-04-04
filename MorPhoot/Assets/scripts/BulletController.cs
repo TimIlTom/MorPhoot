@@ -7,16 +7,17 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody2D bulletRb;
     public int damage = 10;
+    public int bulletSpeed;
 
     private void Start() {
         
         bulletRb = GetComponent<Rigidbody2D>();
-        bulletRb.AddForce(transform.right * 15, ForceMode2D.Impulse);
+        bulletRb.AddForce(transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
         
-        if(other.gameObject.tag != "weapon001" && other.gameObject.tag != "bullet" && other.gameObject.tag != "triggerArea" && other.gameObject.tag != "Player"){
+        if(other.gameObject.tag != "weapon001" && other.gameObject.tag != "bullet" && other.gameObject.tag != "triggerArea" /*&& other.gameObject.tag != "Player"*/){
 
             GameObject.Destroy(this.gameObject);
         }
