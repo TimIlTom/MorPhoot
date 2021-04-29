@@ -7,7 +7,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
 
     public Transform owner;
-    private bool grabbed = false;
+    public bool grabbed = false;
     public Camera cam;
     private Vector2 mousePos;
     Rigidbody2D weaponRb;

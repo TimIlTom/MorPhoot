@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePos;
     public new Camera camera;
     public float angle;
+
     private float jumpTime;
     public float jumpTime1;
+    
     public Transform footPosition;
     public LayerMask groundLayerMask;
 
@@ -30,7 +32,16 @@ public class PlayerController : MonoBehaviour
         dashTime = dashDuration;
     }
 
-    void Update()
+     private void Update() {
+        
+        if(Input.GetButtonDown("Fire2")){
+
+            dashed = true;
+        }
+        jump();
+    }
+
+    void FixedUpdate()
     {
 
         mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
@@ -54,10 +65,6 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(horozonatalMove * speed, playerRb.velocity.y);
         playerRb.velocity = movement;
 
-        if(Input.GetButtonDown("Fire2")){
-
-            dashed = true;
-        }
         if(dashed){
 
             if(dashTime > 0){
@@ -71,9 +78,9 @@ public class PlayerController : MonoBehaviour
                 dashed = false;
             }
         }
-        jump();
+        
     }
-    
+
     private void OnCollisionEnter2D(Collision2D other) {
         
         Debug.Log("Ground");

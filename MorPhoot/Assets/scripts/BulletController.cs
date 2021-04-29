@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         
-        if(other.gameObject.tag != "weapon001" && other.gameObject.tag != "bullet" && other.gameObject.tag != "triggerArea" /*&& other.gameObject.tag != "Player"*/){
+        if(other.gameObject.tag != "weapon001" && other.gameObject.tag != "bullet" && other.gameObject.tag != "triggerArea"){
 
             GameObject.Destroy(this.gameObject);
         }
